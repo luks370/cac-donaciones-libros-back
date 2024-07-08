@@ -5,6 +5,7 @@ use donacion_libros;
 create table usuarios (
     id int AUTO_INCREMENT PRIMARY KEY,
 	nombre varchar(25) NOT NULL,
+    apellido varchar(25) NOT NULL,
     dni int NOT NULL,
     fecha_nac date NOT NULL,
     email varchar(50) UNIQUE NOT NULL,
@@ -71,3 +72,11 @@ INSERT INTO categorias (nombre) VALUES ('Infantil');
 INSERT INTO categorias (nombre) VALUES ('Historia');
 INSERT INTO categorias (nombre) VALUES ('Geografía');
 INSERT INTO categorias (nombre) VALUES ('Matemática');
+
+
+INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Lucas", "Ovejero", "37532407", "1994-05-12", "algo@gmail.com", "12345", "1");
+INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Mario", "Mendez", "40625856", "2000-02-08", "otro@gmail.com", "2222", "1");
+
+INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, usuario_donador_id) VALUES ("Libro1", "Descripcion 1", "1", "1", "1", "2024-07-05", "1");
+INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, usuario_donador_id) VALUES ("Libro2", "Descripcion 2", "2", "2", "1", "2020-07-15", "2");
+

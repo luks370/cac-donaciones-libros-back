@@ -37,13 +37,17 @@ const putLibroById = (req, res) => {
     const {id} = req.params;
     const {titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, usuario_donador_id} = req.body;
 
-    const query = `update libros set titulo=?, descripcion=?, autor_id=?, categoria_id=?, estado=?, fecha_anadido=?, usuario_donador_id=?`
+    const query = `update libros set titulo=?, descripcion=?, autor_id=?, categoria_id=?, estado=?, fecha_anadido=?, usuario_donador_id=? where id=?`
 
-    const values = [titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, usuario_donador_id]
+    const values = [titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, usuario_donador_id, id]
 
     db.query(query, values, (error, result) => {
         if(error){
             return res.status(500).json({error: "Intente mas tarde!!"})
+        }
+        
+        if(result.affectedRows === 0){
+            return res.status(404).json({error: `El libro con Id: ${id} no existe!`})
         }
 
         const libro = {id, ...req.body}
@@ -61,6 +65,11 @@ const deleteLibroById = (req, res) => {
     db.query(query, [id], (error, result) => {
         if(error){
             return res.status(500).json({error: "Intenta mas tarde"})
+        }
+
+        if(result.affectedRows === 0){
+            console.log(result.affectedRows)
+            return res.status(404).json({error: `El libro con Id: ${id} no existe!`})
         }
 
         res.status(200).json({exito: `Se elimino libro. Id: ${id}`})

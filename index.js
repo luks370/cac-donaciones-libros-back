@@ -1,21 +1,19 @@
+require("dotenv").config();
 const express = require("express")
 const server = express();
 const path = require("path")
-const librosRouter = require("./routers/librosRouter")
-const authRouter = require("./routers/authRouter")
+const librosRouter = require("./routers/libros.Router")
+// const authRouter = require("./routers/authRouter")
 
 // CARPETA PUBLICA
 server.use(express.static(path.join(__dirname, "public")));
 
 server.use(express.json());
 
-
-
+server.use("/libros", librosRouter);
 server.use("/", (req, res) => res.send("index.js"))
 
-server.use("/libros", librosRouter);
+// server.use("/auth", authRouter)
 
-server.use("/auth", authRouter)
-
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 server.listen(PORT, console.log(`SERVIDOR ESCUCHANDO PUERTO ${PORT}`))
