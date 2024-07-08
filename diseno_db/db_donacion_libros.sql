@@ -31,10 +31,10 @@ create table libros (
 	categoria_id int NOT NULL,
     estado boolean NOT NULL DEFAULT 1,
     fecha_anadido date NOT NULL,
-    usuario_id int,
+    usuario_donador_id int,
     FOREIGN KEY(autor_id) REFERENCES autores(id),
 	FOREIGN KEY(categoria_id) REFERENCES categorias(id),
-    FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
+    FOREIGN KEY(usuario_donador_id) REFERENCES usuarios(id)
 );
 
 create table donaciones (
