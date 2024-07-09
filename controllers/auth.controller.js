@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const db = require("../db/db");
-const { json } = require("express");
 
 const registro = (req, res) => {
     const {nombre, apellido, dni, fecha_nac, email, contrasena, confirmado} = req.body;
@@ -42,7 +41,7 @@ const login = (req, res) => {
             return res.status(401).json({auth: false, token: null})
         }
 
-        const payload = {user: email}
+        const payload = {usuario_id: result[0].id}
         const secret = process.env.SECRET_KEY
         const options = {expiresIn: process.env.TOKEN_EXPIRES_IN}
         

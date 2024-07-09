@@ -4,15 +4,17 @@ const server = express();
 const path = require("path")
 const librosRouter = require("./routers/libros.router")
 const authRouter = require("./routers/auth.router")
+const authMiddleware = require("./middlewares/auth.middleware")
 
 server.use(express.static(path.join(__dirname, "public")));
 server.use(express.json());
 
 
 
-server.use("/libros", librosRouter);
 server.use("/auth", authRouter)
+server.use("/libros", authMiddleware, librosRouter )
 server.use("/", (req, res) => res.send("Raiz del servidor /"))
+
 
 
 
