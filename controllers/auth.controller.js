@@ -4,10 +4,9 @@ const db = require("../db/db");
 
 const registro = (req, res) => {
     const {nombre, apellido, dni, fecha_nac, email, contrasena, confirmado} = req.body;
-    console.log(req.body)
 
     const hashedPass = bcrypt.hashSync(contrasena, 3);
-    console.log(hashedPass)
+    console.log(`CONTRASEÑA ENCRIPTADA: ${hashedPass}`)
 
     const query = `insert into usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) values (?,?,?,?,?,?,?)`
     const values = [nombre, apellido, dni, fecha_nac, email, hashedPass, confirmado]
@@ -19,6 +18,7 @@ const registro = (req, res) => {
 
         const newUser = {id: result.insertId, ...req.body}
 
+        console.log("USUARIO REGISTRADO EXITOSAMENTE!")
         res.status(201).json(newUser)
     } )
 }

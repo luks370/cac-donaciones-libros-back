@@ -17,8 +17,7 @@ module.exports = (req, res, next) => {
         if(error){
             return res.status(500).json({auth: false, mensaje: "Token invalido!"})
         }
-
-        console.log(decoded)
+        
         req.usuario_id = decoded.usuario_id;
 
         next();

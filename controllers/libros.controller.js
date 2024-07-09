@@ -27,12 +27,14 @@ const getAllLibros = (req, res) => {
             return res.status(200).json({exito: "No hay libros en la db!"})
         }
 
+        console.log(`SE OBTUVO LOS DATOS DE TODOS LOS LIBROS`)
         res.status(200).json(rows)
     })
 }
 
 const getLibroById = (req, res) => {
     const {id} = req.params;
+
     const query = `
     SELECT
         l.id,
@@ -59,6 +61,7 @@ const getLibroById = (req, res) => {
             return res.status(200).json({exito: "No hay libros en la db!"})
         }
 
+        console.log(`SE OBTUVO DATOS DEL LIBRO ID: ${id}`)
         res.status(200).json(rows[0])
     })
 }
@@ -78,6 +81,7 @@ const postLibro = (req, res, decoded) => {
         }
         const libro = {id: result.insertId, ...req.body}
 
+        console.log(`SE AGREGO LIBRO ID: ${result.insertId}`)
         res.status(201).json(libro)
     } )
 }
@@ -97,11 +101,12 @@ const putLibroById = (req, res) => {
         }
         
         if(result.affectedRows === 0){
-            return res.status(404).json({error: `El libro con Id: ${id} no existe!`})
+            return res.status(404).json({error: `El libro con Id: ${id} no existe o no te pertenece!`})
         }
         
         const libro = {id, ...req.body}
 
+        console.log(`SE ACTUALIZO LIBRO ID: ${id}`)
         res.status(201).json(libro)
     })
 }
@@ -121,6 +126,7 @@ const deleteLibroById = (req, res) => {
             return res.status(404).json({error: `El libro con Id: ${id} no existe o no te pertenece!`})
         }
 
+        console.log(`SE ELIMINO LIBRO ID: ${id}`)
         res.status(200).json({exito: `Se elimino libro. Id: ${id}`})
     })
 }
