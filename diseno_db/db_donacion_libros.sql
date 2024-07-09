@@ -39,15 +39,15 @@ create table libros (
     FOREIGN KEY(usuario_donador_id) REFERENCES usuarios(id)
 );
 
-create table donaciones (
-	id int AUTO_INCREMENT PRIMARY KEY,
-    usuario_donador_id int,
-    libro_donado_id int,
-    usuario_recibe_id int,
-    FOREIGN KEY (usuario_donador_id) REFERENCES usuarios(id),
-    FOREIGN KEY (libro_donado_id) REFERENCES libros(id),
-    FOREIGN KEY (usuario_recibe_id) REFERENCES usuarios(id)
-);
+-- create table donaciones (
+-- 	id int AUTO_INCREMENT PRIMARY KEY,
+--     usuario_donador_id int,
+--     libro_donado_id int,
+--     usuario_recibe_id int,
+--     FOREIGN KEY (usuario_donador_id) REFERENCES usuarios(id),
+--     FOREIGN KEY (libro_donado_id) REFERENCES libros(id),
+--     FOREIGN KEY (usuario_recibe_id) REFERENCES usuarios(id)
+-- );
 
 
 
@@ -75,9 +75,9 @@ INSERT INTO categorias (nombre) VALUES ('Geografía');
 INSERT INTO categorias (nombre) VALUES ('Matemática');
 
 
-INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Lucas", "Ovejero", "37532407", "1994-05-12", "algo@gmail.com", "12345", "1");
-INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Mario", "Mendez", "40625856", "2000-02-08", "otro@gmail.com", "2222", "1");
+-- INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Lucas", "Ovejero", "37532407", "1994-05-12", "algo@gmail.com", "12345", "1");
+-- INSERT INTO usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) VALUES ("Mario", "Mendez", "40625856", "2000-02-08", "otro@gmail.com", "2222", "1");
 
-INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, imagen, usuario_donador_id) VALUES ("Libro1", "Descripcion 1", "1", "1", "1", "2024-07-05", "imagen.jpg", "1");
-INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, imagen, usuario_donador_id) VALUES ("Libro2", "Descripcion 2", "2", "2", "1", "2020-07-15", "imagen.jpg", "2");
+-- INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, imagen, usuario_donador_id) VALUES ("Libro1", "Descripcion 1", "1", "1", "1", "2024-07-05", "imagen.jpg", "1");
+-- INSERT INTO libros (titulo, descripcion, autor_id, categoria_id, estado, fecha_anadido, imagen, usuario_donador_id) VALUES ("Libro2", "Descripcion 2", "2", "2", "1", "2020-07-15", "imagen.jpg", "2");
 
