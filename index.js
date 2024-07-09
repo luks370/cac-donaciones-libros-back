@@ -9,8 +9,6 @@ const authMiddleware = require("./middlewares/auth.middleware")
 server.use(express.static(path.join(__dirname, "public")));
 server.use(express.json());
 
-
-
 server.use("/auth", authRouter)
 server.use("/libros", authMiddleware, librosRouter )
 server.use("/", (req, res) => res.send("Raiz del servidor /"))

@@ -4,6 +4,7 @@ const db = require("../db/db");
 
 const registro = (req, res) => {
     const {nombre, apellido, dni, fecha_nac, email, contrasena, confirmado} = req.body;
+    console.log(req.body)
 
     const hashedPass = bcrypt.hashSync(contrasena, 3);
     console.log(hashedPass)
@@ -15,6 +16,7 @@ const registro = (req, res) => {
         if(error){
             return res.status(500).json({error: "Intenta mas tarde!"})
         }
+
         const newUser = {id: result.insertId, ...req.body}
 
         res.status(201).json(newUser)
