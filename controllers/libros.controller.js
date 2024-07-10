@@ -58,7 +58,7 @@ const getLibroById = (req, res) => {
         }
 
         if(rows.length === 0){
-            return res.status(200).json({exito: "No hay libros en la db!"})
+            return res.status(200).json({exito: `El libro no existe. Id: ${id}`})
         }
 
         console.log(`SE OBTUVO DATOS DEL LIBRO ID: ${id}`)
