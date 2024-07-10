@@ -6,7 +6,6 @@ const registro = (req, res) => {
     const {nombre, apellido, dni, fecha_nac, email, contrasena, confirmado} = req.body;
 
     const hashedPass = bcrypt.hashSync(contrasena, 3);
-    console.log(`CONTRASEÑA ENCRIPTADA: ${hashedPass}`)
 
     const query = `insert into usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) values (?,?,?,?,?,?,?)`
     const values = [nombre, apellido, dni, fecha_nac, email, hashedPass, confirmado]
@@ -16,7 +15,7 @@ const registro = (req, res) => {
             return res.status(500).json({error: "Intenta mas tarde!"})
         }
 
-        const newUser = {id: result.insertId, ...req.body}
+        const newUser = {id: result.insertId, nombre, apellido, dni, email, hashedPass, confirmado}
 
         console.log("USUARIO REGISTRADO EXITOSAMENTE!")
         res.status(201).json(newUser)
