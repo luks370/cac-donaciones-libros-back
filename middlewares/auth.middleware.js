@@ -18,6 +18,8 @@ module.exports = (req, res, next) => {
             return res.status(500).json({auth: false, mensaje: "Token invalido!"})
         }
         
+        // Agregamos esta variable al body para despues poder hacer las consultas post, put, delete 
+        // y evitar que solo el dueño del libro pueda alterar su informacion
         req.usuario_id = decoded.usuario_id;
 
         next();

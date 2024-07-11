@@ -15,7 +15,8 @@ const registro = (req, res) => {
             return res.status(500).json({error: "Intenta mas tarde!"})
         }
 
-        const newUser = {id: result.insertId, nombre, apellido, dni, email, hashedPass, confirmado}
+        // quite la contraseña hash del objeto newUser, por recomendacion del profesor para mayor seguridad
+        const newUser = {id: result.insertId, nombre, apellido, dni, email, confirmado}
 
         console.log("USUARIO REGISTRADO EXITOSAMENTE!")
         res.status(201).json(newUser)
