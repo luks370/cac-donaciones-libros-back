@@ -3,11 +3,11 @@ const bcrypt = require("bcryptjs")
 const db = require("../db/db");
 
 const registro = (req, res) => {
-    const {nombre, apellido, dni, fecha_nac, email, contrasena, confirmado} = req.body;
+    const {nombre, apellido, dni, fecha_nac, email, password, confirmado} = req.body;
 
-    const hashedPass = bcrypt.hashSync(contrasena, 3);
+    const hashedPass = bcrypt.hashSync(password, 3);
 
-    const query = `insert into usuarios (nombre, apellido, dni, fecha_nac, email, contrasena, confirmado) values (?,?,?,?,?,?,?)`
+    const query = `insert into usuarios (nombre, apellido, dni, fecha_nac, email, password, confirmado) values (?,?,?,?,?,?,?)`
     const values = [nombre, apellido, dni, fecha_nac, email, hashedPass, confirmado]
 
     db.query(query, values, (error, result) => {
@@ -24,7 +24,7 @@ const registro = (req, res) => {
 }
 
 const login = (req, res) => {
-    const {email, contrasena} = req.body;
+    const {email, password} = req.body;
 
     const query = `select * from usuarios where email=?`
 
@@ -37,7 +37,7 @@ const login = (req, res) => {
             return res.status(404).json({exito: `El email ${email} no esta registrado!!`})
         }
 
-        const passValid = bcrypt.compareSync(contrasena, result[0].contrasena)
+        const passValid = bcrypt.compareSync(password, result[0].password)
 
         if(!passValid){
             return res.status(401).json({auth: false, token: null})
